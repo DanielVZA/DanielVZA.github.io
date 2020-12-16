@@ -96,14 +96,6 @@ new Vue({
       instance.open();
     } //fin carga modal
 
-    /* progreso_carga(){
-      alert('estoy funcionando')
-      var mostrar = document.getElementById('pantalla_carga');
-      if(this.superheroes.length > 13){
-        mostrar.style.display = "none";
-      }
-      
-    } */
   },
   created() {
     this.cargar();
@@ -117,5 +109,3 @@ new Vue({
     });
   }
 });
-
-//{{(item.nota >=4)?"Aprobado":"Reprobado"}}
