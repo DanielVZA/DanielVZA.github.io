@@ -3,19 +3,130 @@
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lilita+One|Marvel&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/estilo.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Super Heroes</title>
+  <title>Comic Store</title>
 </head>
 
-<body class="red darken-3" style="background-image: url('img/navy.png')">
+<body class="bg-info" style="background-image: url(img/comicStore/brushed-alum.png)">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary" style="background-image: url(img/comicStore/cubes.png">
+    <a class=" text-white" href="#" style="font-family: Bangers;font-size: 25px;text-decoration: none;">COMIC STORE</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto" style="font-family: Bangers">
+        <li class="nav-item"><a class="nav-link text-white">COMICS</a></li>
+        <li class="nav-item"><a class="nav-link text-white">SERIES</a></li>
+        <li class="nav-item"><a class="nav-link text-white">MOVIES</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="card-deck">
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/avenger1.png" width="Responsive image">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>AVENGERS 1</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn-primary">COMPRAR</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/avengereradeultron.png" width="Responsive image">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>ERA DE ULTRON</h3>
+          <p class="text-danger">$13000</p>
+          <button class="btn-primary">COMPRAR</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/dead pool matandoparavivir.png" width="Responsive image">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>DEADPOOL</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn-danger">AGOTADO</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/secretwar.png">
+        <div class="card-body text-center" style="font-family: Bangers" width="Responsive image">
+          <h3>SECRET WAR</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn-primary">COMPRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row p-4" style="background-color: #000;margin: auto">
+    <div class="col col-xl-12 col-12 text-center" style="color: #F5E83D;font-family: Bangers">
+      <h1>PRONTO</h1>
+      <h3>EL COMIC DE KICKASS</h3>
+    </div>
+    <div class="col col-xl-12 col-12 text-center">
+      <img src="img/comicStore/kickass.jpg" class="img-fluid" alt="Responsive image">
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="card-deck">
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/spiderman1.png">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>SPIDERMAN BACK</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/stranger things.png">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>STRANGER THINGS</h3>
+          <p class="text-danger">$13000</p>
+          <button class="btn btn-sm btn-danger"><i class="fas fa-plus"></i> AGOTADO</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/thanosvence1.png">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>THANOS VENCE</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
+        </div>
+      </div>
+      <div class="card p-3" style="margin: 1em">
+        <img src="img/comicStore/infinitygauntlet.png">
+        <div class="card-body text-center" style="font-family: Bangers">
+          <h3>INFINITY GAUNTLET</h3>
+          <p class="text-danger">$12000</p>
+          <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/4666df0220.js" crossorigin="anonymous"></script>
+</body>
+
+<!--<body class="red darken-3" style="background-image: url('img/navy.png')">
 
   <header id="fuenteCuerpo">
-    <!-- cabezera pagina -->
+    <!-- cabezera pagina
     <nav class="black">
       <div class="nav-wrapper">
         <a href="https://uwanime.files.wordpress.com/2017/02/quality-comics-logo.png" class="brand-logo center"><img
@@ -41,20 +152,20 @@
     </ul>
   </header>
 
-  <!-- Fin de cabezera -->
+  <!-- Fin de cabezera 
 
   <main id="fuenteMarvel">
 
-    <!-- Inicio modal -->
+    <!-- Inicio modal 
 
 
-    <!-- Modal Structure -->
+    <!-- Modal Structure 
     
       <div id="modal1" class="modal">
         <div v-if="datos_superHeroes != null">
-          <!-- Validacion de datos_superHeroes -->
+          <!-- Validacion de datos_superHeroes 
           <div class="modal-content red " style="background-image: url('img/cardboard.png')">
-            <!-- Carta Modal -->
+            <!-- Carta Modal 
             <div class="col s12 m12 l12">
               <a href="#!" class="left modal-close waves-effect waves-green btn-flat"><i
                   class="material-icons">backspace</i></a>
@@ -69,7 +180,7 @@
 
                 <div class="card-stacked">
                   <div class="card-content">
-                    <!-- {{test.obj['full-name']}} -->
+                    <!-- {{test.obj['full-name']}} 
                     <P><b>Nombre completo:</b> {{(datos_superHeroes.biography['full-name'] == "")?"Sin informacion":datos_superHeroes.biography['full-name'] }}</P>
                     <p><b>Alias:</b> {{datos_superHeroes.biography.aliases[0]}}</p>
                     <p><b>Publicador:</b> {{datos_superHeroes.biography.publisher}}</p>
@@ -82,22 +193,22 @@
                     <p><b>Base:</b> {{datos_superHeroes.work.base}}</p>
                     <p><b>Conexiones:</b> {{datos_superHeroes.connections.relatives}}</p>
                   </div>
-                </div><!-- card Stacked -->
+                </div><!-- card Stacked 
 
-              </div><!-- CARD HORIZONTAL -->
+              </div><!-- CARD HORIZONTAL 
             </div>
-            <!-- Fin de primera fila -->
+            <!-- Fin de primera fila 
           </div>
-          <!-- fin de modal -->
+          <!-- fin de modal 
         </div>
-        <!-- fin validacion de datos -->
+        <!-- fin validacion de datos 
       </div>
-      <!-- Fin modal -->
+      <!-- Fin modal 
 
 
-    <!-- Comienzo Contenido pagina -->
+    <!-- Comienzo Contenido pagina 
 
-    <!-- Mascara de carga -->
+    <!-- Mascara de carga 
 
     <div class="row center" id="pantalla_carga" style="display: block; z-index: 999; height:80vh;">
       <div class="col l12 m12 s12">
@@ -118,9 +229,9 @@
       </div>
     </div>
 
-    <!-- Fin mascara carga -->
+    <!-- Fin mascara carga 
 
-    <!-- Inicio informacion Creadores -->
+    <!-- Inicio informacion Creadores 
     <div class="row" id="aboutme" style="display: none;">
       <div class="col l12 m12 s12 center">
         <h1>Creadores</h1>
@@ -148,15 +259,15 @@
 
     </div>
 
-    <!-- informaciooncreadores -->
+    <!-- informaciooncreadores 
 
-    <!-- Cartas de super heroes -->
+    <!-- Cartas de super heroes 
 
     <div class="row" id="superheroestab" style="display: none;">
       <div class="col l3 m6 s12" v-for="x in superheroes">
         <div id="cartas_superheroes" class="card-panel center z-depth-4 grey lighten-4" @click="carga_modal(x)"
           style="background-image: url('img/sofcarta.png')">
-          <!-- inicio cardpanel -->
+          <!-- inicio cardpanel 
           <h4 class="center"><b>({{x.id}})</b> {{x.name}}</h4>
           <img :src="x.image.url" height="250" class=" z-depth-3">
           <hr>
@@ -188,19 +299,19 @@
                 <div class="determinate black" :style="barra + x.powerstats.combat +barra_porcentaje"></div>
               </div>
             </div>
-          </div><!-- fin row de card panel -->
+          </div><!-- fin row de card panel 
         </div>
       </div>
     </div>
 
-    <!-- fin cartas de superheroes -->
+    <!-- fin cartas de superheroes 
 
   </main>
-  <!-- Fin de contenido  -->
+  <!-- Fin de contenido  
 
-  <!-- Comienzo de Footer -->
+  <!-- Comienzo de Footer 
   <footer class="page-footer grey darken-4" id="fuenteCuerpo">
-    <!-- Todo foote donde va todo -->
+    <!-- Todo foote donde va todo 
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -218,22 +329,22 @@
         </div>
       </div>
     </div>
-    <!-- fin primera fila -->
+    <!-- fin primera fila 
     <div class="footer-copyright black">
       <div class="container">
         © 2020 Derechos Reservados
         <a class="grey-text text-lighten-4 right" onClick="cambiar('superheroestab')" href="#">SuperHeroes</a>
       </div>
     </div>
-    <!-- fin segunda fila -->
+    <!-- fin segunda fila 
   </footer>
 
 
-  <!--JAVA SCRIPTS-->
+  <!--JAVA SCRIPTS
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/script.js"></script>
-</body>
+</body>-->
 
 </html>
