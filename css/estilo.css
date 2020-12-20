@@ -1,3 +1,11 @@
+body {
+  height: 100% !important;
+}
+
+html {
+  height: 100% !important;
+}
+
 .fondo-brushed {
   background-image: url(../img/brushed-alum.png);
 }
@@ -6,11 +14,15 @@
   background-image: url(../img/cubes.png);
 }
 
-#banger-25 {
+.fondo-sofcarta {
+  background-image: url(../img/sofcarta.png);
+}
+
+.banger-25 {
   font-family: Bangers;
   font-size: 25px;
   color: white;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 #banger-25:hover {
@@ -25,4 +37,13 @@
 
 .links:hover {
   color: crimson !important;
+  text-decoration: none;
+}
+
+footer {
+  align-items: flex-end;
+}
+
+.comic-card {
+  margin: 1em;
 }
