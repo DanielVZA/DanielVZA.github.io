@@ -120,9 +120,46 @@
         </div>
       </div>
     </div>
-    <div id="superhero" style="display: none;">
-      <p>Hola mundo</p>
+
+    <div id="superhero" class="container-fluid" style="display: none;">
+      <div class="card-deck">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="heroe in heroes">
+          <div class="card p-3 m-3 fondo-banner bg-info">
+            <div class="card-title">
+              <h3 class="text-center banger-25">{{ heroe.name }}</h3>
+            </div>
+            <img :src="heroe.image.url" width="Responsive image">
+            <div class="card-body text-center banger">
+              <span>Inteligencia</span>
+              <div class="progress">
+                <div class="progress-bar bg-success" :style="{ width: (heroe.powerstats.intelligence == 'null')?0:heroe.powerstats.intelligence+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span>Fuerza</span>
+              <div class="progress">
+                <div class="progress-bar bg-primary" :style="{ width: (heroe.powerstats.strength == 'null')?0:heroe.powerstats.strength+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span>Velocidad</span>
+              <div class="progress">
+                <div class="progress-bar bg-secondary" :style="{ width: (heroe.powerstats.speed == 'null')?0:heroe.powerstats.speed+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span>Resistencia</span>
+              <div class="progress">
+                <div class="progress-bar bg-danger" :style="{ width: (heroe.powerstats.durability == 'null')?0:heroe.powerstats.durability+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span>Poder</span>
+              <div class="progress">
+                <div class="progress-bar bg-warning" :style="{ width: (heroe.powerstats.power == 'null')?0:heroe.powerstats.power+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span>Combate</span>
+              <div class="progress">
+                <div class="progress-bar bg-dark" :style="{ width: (heroe.powerstats.combat == 'null')?0:heroe.powerstats.combat+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div id="aboutme" style="display: none;">
       <!-- Inicio informacion Creadores -->
       <div class="container m-3">
