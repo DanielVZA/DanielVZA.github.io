@@ -15,7 +15,8 @@
 
 <body class="bg-info fondo-brushed">
   <main id="content">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fondo-banner">
+    <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fondo-banner fix">
     <a class="navbar-brand banger-25" href="#">COMIC STORE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -34,6 +35,7 @@
       </ul>
     </div>
   </nav>
+  </header>
 
     <div id="index">
       <div class="container-fluid">
@@ -123,12 +125,12 @@
 
     <div id="superhero" class="container-fluid" style="display: none;">
       <div class="card-deck">
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="heroe in heroes">
-          <div class="card p-3 m-3 fondo-banner bg-info">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="heroe in heroes">
+          <div class="card p-3 m-3 fondo-banner bg-info hero-card" v-on:click="cargarModalHero(heroe)" data-toggle="modal" data-target="#modal-hero">
             <div class="card-title">
               <h3 class="text-center banger-25">{{ heroe.name }}</h3>
             </div>
-            <img :src="heroe.image.url" width="Responsive image">
+            <img :src="heroe.image.url" width="Responsive image" height="250">
             <div class="card-body text-center banger">
               <span>Inteligencia</span>
               <div class="progress">
@@ -144,17 +146,48 @@
               </div>
               <span>Resistencia</span>
               <div class="progress">
-                <div class="progress-bar bg-danger" :style="{ width: (heroe.powerstats.durability == 'null')?0:heroe.powerstats.durability+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-warning" :style="{ width: (heroe.powerstats.durability == 'null')?0:heroe.powerstats.durability+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <span>Poder</span>
               <div class="progress">
-                <div class="progress-bar bg-warning" :style="{ width: (heroe.powerstats.power == 'null')?0:heroe.powerstats.power+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-danger" :style="{ width: (heroe.powerstats.power == 'null')?0:heroe.powerstats.power+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <span>Combate</span>
               <div class="progress">
                 <div class="progress-bar bg-dark" :style="{ width: (heroe.powerstats.combat == 'null')?0:heroe.powerstats.combat+'%' }" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-hero" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-info banger">
+          <div class="modal-header fondo-banner">
+            <h5 class="modal-title" id="exampleModalLabel">{{ (datos_heroe.biography['full-name'] == '')?datos_heroe.name:datos_heroe.biography['full-name'] }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body fondo-brushed">
+            <p>Lugar de Nacimiento: {{ (datos_heroe.biography['place-of-birth'] == '-')?'Sin informacion':datos_heroe.biography['place-of-birth'] }}</p>
+            <p>Relaciones: {{ datos_heroe.connections.relatives }}</p>
+            <p>Genero: {{ (datos_heroe.appearance.gender == 'Male')?'Masculino':'Femenino' }}</p>
+            <p>Raza: {{ (datos_heroe.appearance.race == 'null')?'Sin informacion':datos_heroe.appearance.race }}</p>
+            <p>Ocupacion: {{ datos_heroe.work.occupation }}</p>
+            <p>Base de Operaciones: {{ (datos_heroe.work.base == '-')?'Sin informacion':datos_heroe.work.base }}</p>
+            <p>Alias: <span v-for="alias in datos_heroe.biography.aliases">{{ (alias == '-')?'Sin informacion':' #'+alias }}</span></p>
+            <p>Alter Egos: {{ (datos_heroe.biography['alter-egos'] == "No alter egos found.")?"Sin alter egos":datos_heroe.biography['alter-egos'] }}</p>
+            <p>Alineacion: {{ (datos_heroe.biography.alignment == 'good')?'Bueno':'Malo' }}</p>
+            <p>Grupo de Afiliacion: {{ datos_heroe.connections['group-affilation'] }}</p>
+            <p>Primera Aparicion: {{ datos_heroe.biography['first-appearance'] }}</p>
+            <p>Publicador: {{ datos_heroe.biography.publisher }}</p>
+          </div>
+          <div class="modal-footer fondo-banner">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

@@ -39,3 +39,7 @@ footer {
 .comic-card {
   margin: 1em;
 }
+
+.hero-card:hover {
+  background-color: crimson !important;
+}
