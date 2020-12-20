@@ -174,17 +174,17 @@
           </div>
           <div class="modal-body fondo-brushed">
             <p>Lugar de Nacimiento: {{ (datos_heroe.biography['place-of-birth'] == '-')?'Sin informacion':datos_heroe.biography['place-of-birth'] }}</p>
-            <p>Relaciones: {{ datos_heroe.connections.relatives }}</p>
+            <p>Relaciones: {{ (datos_heroe.connections.relatives == '-')?'Sin informacion':datos_heroe.connections.relatives }}</p>
             <p>Genero: {{ (datos_heroe.appearance.gender == 'Male')?'Masculino':'Femenino' }}</p>
             <p>Raza: {{ (datos_heroe.appearance.race == 'null')?'Sin informacion':datos_heroe.appearance.race }}</p>
-            <p>Ocupacion: {{ datos_heroe.work.occupation }}</p>
+            <p>Ocupacion: {{ (datos_heroe.work.occupation == '-')?'Sin informacion':datos_heroe.work.occupation }}</p>
             <p>Base de Operaciones: {{ (datos_heroe.work.base == '-')?'Sin informacion':datos_heroe.work.base }}</p>
             <p>Alias: <span v-for="alias in datos_heroe.biography.aliases">{{ (alias == '-')?'Sin informacion':' #'+alias }}</span></p>
             <p>Alter Egos: {{ (datos_heroe.biography['alter-egos'] == "No alter egos found.")?"Sin alter egos":datos_heroe.biography['alter-egos'] }}</p>
             <p>Alineacion: {{ (datos_heroe.biography.alignment == 'good')?'Bueno':'Malo' }}</p>
-            <p>Grupo de Afiliacion: {{ datos_heroe.connections['group-affilation'] }}</p>
-            <p>Primera Aparicion: {{ datos_heroe.biography['first-appearance'] }}</p>
-            <p>Publicador: {{ datos_heroe.biography.publisher }}</p>
+            <p>Grupo de Afiliacion: {{ (datos_heroe.connections['group-affiliation'] == '-')?'Sin informacion':datos_heroe.connections['group-affiliation'] }}</p>
+            <p>Primera Aparicion: {{ (datos_heroe.biography['first-appearance'] == '-')?'Sin informacion':datos_heroe.biography['first-appearance'] }}</p>
+            <p>Publicador: {{ (datos_heroe.biography.publisher == '')?'Sin informacion':datos_heroe.biography.publisher }}</p>
           </div>
           <div class="modal-footer fondo-banner">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
