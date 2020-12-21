@@ -172,8 +172,8 @@
           <div class="modal-body fondo-brushed">
             <div class="row">
               <div class="col-lg-5">
-                  <img :src="datos_heroe.image" alt="250" width="190" class="col-lg-12">
-                  <img v-if="datos_heroe.biography.publisher == 'DC Comics'" src="img/dc-comics.png" alt="250" width="190" class="col-lg-12 mt-2 d-none d-sm-none d-md-block d-lg-block">
+                  <img :src="datos_heroe.image" alt="250" width="180" class="col-6 col-sm-6 col-lg-12 mb-1">
+                  <img v-if="datos_heroe.biography.publisher == 'DC Comics'" src="img/dc-comics.png" alt="250" width="190" class="col-md-6 col-lg-12 mt-2 d-none d-sm-block d-md-block d-lg-block">
                   <img v-if="datos_heroe.biography.publisher == 'Marvel Comics'" src="img/marvel-comics.png" alt="250" width="190" class="col-lg-12 mt-2 d-none d-sm-none d-md-block d-lg-block">
                   <img v-if="datos_heroe.biography.publisher == 'Dark Horse Comics'" src="img/dark-horse-comics.png" alt="250" width="190" class="col-lg-12 mt-2 d-none d-sm-none d-md-block d-lg-block">
                   <img v-if="datos_heroe.biography.publisher == 'Wildstorm'" src="img/Wildstorm-logo.webp" alt="250" width="190" class="col-lg-12 mt-2 d-none d-sm-none d-md-block d-lg-block">
