@@ -47,3 +47,7 @@ footer {
 .set {
   background-color: crimson !important;
 }
+
+footer {
+  bottom: 0;
+}
