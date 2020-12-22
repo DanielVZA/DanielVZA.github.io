@@ -2,6 +2,7 @@ var main = new Vue({
   el: "#content",
   data: {
     url: "https://superheroapi.com/api.php/630240554391029/",
+    urlSearch: "https://superheroapi.com/api.php/630240554391029/search/",
     heroes: [],
     bad_img: [
       51,54,74,101,113,117,124,131,133,134,
@@ -9,6 +10,9 @@ var main = new Vue({
       292,362,447,453,511,512,552,553,593,
       603,629,662,682,694,698,715,721,725
     ],
+    query: [],
+    result:[],
+    nombre: '',
     datos_heroe: {
       name: '',
       biography: {},
@@ -21,8 +25,8 @@ var main = new Vue({
   methods: {
     async cargarLista() {
       var cont = 0;
-      for(var i = 1;i<732;i++){
-        var resultado = await axios.get(this.url+i);
+      for(let i = 1;i<732;i++){
+        let resultado = await axios.get(this.url+i);
         this.heroes.push(resultado.data);
         if(this.bad_img[cont] == i){
           this.heroes[i-1].image.url = "https://www.caiv.org/wp-content/plugins/smg-theme-tools/public/images/not-available-es.png";
@@ -30,6 +34,14 @@ var main = new Vue({
         }
         
       }
+    },
+    buscarNombre: async function(nombre){
+      let cont = 0;
+      var resultado = await axios.get(this.urlSearch+nombre);
+      this.query.push(resultado.data);
+      this.query.forEach(heroe => {
+        this.result = heroe.results;
+      }); 
     },
     test: function(){
       alert('ok');
