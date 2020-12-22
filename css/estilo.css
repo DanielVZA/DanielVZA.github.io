@@ -43,3 +43,7 @@ footer {
 .hero-card:hover {
   background-color: crimson !important;
 }
+
+.set {
+  background-color: crimson !important;
+}

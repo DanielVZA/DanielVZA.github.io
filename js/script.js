@@ -35,20 +35,16 @@ var main = new Vue({
       alert('ok');
     },
     cargarIndex: function(){
-      var index = document.getElementById('index');
+      let index = document.getElementById('index');
       index.style.display = 'block';
-      var superHero = document.getElementById('superhero');
+      let superHero = document.getElementById('superhero');
       superHero.style.display = 'none'; 
-      var aboutme = document.getElementById('aboutme');
-      aboutme.style.display = 'none'; 
     },
     cargarSuperHero: function(){
-      var superHero = document.getElementById('superhero');
+      let superHero = document.getElementById('superhero');
       superHero.style.display = 'block';
-      var index = document.getElementById('index');
+      let index = document.getElementById('index');
       index.style.display = 'none'; 
-      var aboutme = document.getElementById('aboutme');
-      aboutme.style.display = 'none';
     },
     cargarModalHero: function(heroe){
       this.datos_heroe.name = heroe.name;
@@ -62,7 +58,4 @@ var main = new Vue({
   created() {
     this.cargarLista();
   },
-  mounted() {
-
-  }
 });
