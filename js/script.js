@@ -30,14 +30,14 @@ var main = new Vue({
         titulo:'Era de Ultron',
         imagen: 'img/avengereradeultron.png',
         precio: 13000,
-        stock: 10
+        stock: 7
       },
       {
         id: 3,
         titulo: 'Deadpool',
         imagen: 'img/dead pool matandoparavivir.png',
         precio: 12000,
-        stock: 0
+        stock: 2
       },
       {
         id: 4,
@@ -51,7 +51,7 @@ var main = new Vue({
         titulo: 'Spiderman Back',
         imagen: 'img/spiderman1.png',
         precio: 12000,
-        stock: 11
+        stock: 1
       },
       {
         id: 6,
@@ -65,14 +65,14 @@ var main = new Vue({
         titulo: 'Thanos Vence',
         imagen: 'img/thanosvence1.png',
         precio: 12000,
-        stock: 13
+        stock: 4
       },
       {
         id: 8,
         titulo: 'Infinity Gauntlet',
         imagen: 'img/infinitygauntlet.png',
         precio: 12000,
-        stock: 9
+        stock: 3
       }
     ],
     result:[],
@@ -119,13 +119,14 @@ var main = new Vue({
         titulo: comic.titulo,
         imagen: comic.imagen,
         cantidad: 0,
+        precio: comic.precio,
         subTotal: 0,
       }
       if(this.cart.find((e) => {
           if(e.index == index){
             e.cantidad += 1;
             e.subTotal = e.cantidad * comic.precio;
-            this.compra.total += comic.precio;
+            this.compra.total += e.precio;
             this.comics[index].stock -= 1
             return true;
           }
@@ -134,13 +135,33 @@ var main = new Vue({
       else{
         item.cantidad = 1;
         item.subTotal = item.cantidad * comic.precio;
-        this.compra.total += comic.precio;
+        this.compra.total += item.precio;
         this.comics[index].stock -= 1;
         this.cart.push(item);
       }
     },
-    removeProducto: function(index){
-      
+    addCantidad: function(item){
+      this.cart.find((e) => {
+        if(e.index == item.index){
+          e.cantidad += 1;
+          e.subTotal = e.cantidad * e.precio;
+          this.comics[item.index].stock -= 1;
+        }
+      })
+    },
+    removeProducto: function(item,index){
+      this.cart.find((e) => {
+        if(e.index == item.index){
+          if(e.cantidad > 1){
+            e.cantidad -= 1;
+            e.subTotal = e.cantidad * e.precio;
+            this.comics[item.index].stock += 1;
+          }
+          else{
+            this.cart.splice(index,1);
+          }
+        }
+      })
     },
     test: function(){
       alert('ok');

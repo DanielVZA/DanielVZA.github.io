@@ -18,7 +18,7 @@
   <main id="content">
     <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fondo-banner" style="width: 100%;">
-    <a class="navbar-brand banger-25" href="#" v-on:click="cargarIndex">COMIC STORE</a>
+    <a class="navbar-brand banger-25 links" href="#" v-on:click="cargarIndex">COMIC STORE</a>
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="row m-2">
-          <div class="card mx-auto m-2 p-2 col-12 col-sm-5 col-md-5 col-lg-3 col-xl-3" v-for="comic in comics" v-if="comic.id > 4">
+          <div class="card mx-auto m-2 p-2 col-12 col-sm-5 col-md-5 col-lg-3 col-xl-3" v-for="(comic,index) in comics" v-if="comic.id > 4">
             <img :src="comic.imagen" class="rounded img-fluid" width="Responsive image">
             <div class="card-body text-center" style="font-family: Bangers">
               <h3>{{ comic.titulo }}</h3>
@@ -138,13 +138,41 @@
         <div class="card-header bg-info fondo-banner">
           <h3 class="banger">Productos en el carro</h3>
         </div>
-        <div class="card-content">
-          <div v-for="item in cart">
-            {{ item.titulo }}
-            <br>
-            {{ item.cantidad }}
-            <br>
-            {{ item.subTotal }}
+        <div class="card-body fondo-brushed bg-info banger">
+          <div v-if="cart.length == 0">
+            <h5>No se han agregado productos</h5>
+          </div>
+          <div v-if="cart.length > 0">
+            <table class="table table-borderless text-white">
+              <thead>
+                <tr>
+                  <th scope="col">Comic</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">SubTotal</th>
+                </tr>
+              </thead>
+              <tbody v-for="(item,index) in cart">
+                <tr>
+                  <td>
+                    <img :src="item.imagen" width="100" alt="100">
+                  </td>
+                  <td>{{ item.titulo }}</td>
+                  <td>${{ item.precio }}</td>
+                  <td>
+                      {{ item.cantidad }}  
+                      <button type="button" class="btn btn-sm btn-success" v-on:click="addCantidad(item,index)" :disabled="comics[item.index].stock < 1">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-danger" v-on:click="removeProducto(item)">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                  </td>
+                  <td>${{ item.subTotal }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="card-footer fondo-banner bg-info">
