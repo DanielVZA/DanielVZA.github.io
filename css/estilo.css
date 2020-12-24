@@ -34,10 +34,14 @@
 
 footer {
   align-items: flex-end;
+  position: relative;
+  width: 100%;
+  bottom: 0;
 }
 
 .comic-card {
-  margin: 1em;
+  margin-left: 1em !important;
+  margin-right: 1em !important;
 }
 
 .hero-card:hover {
@@ -48,8 +52,18 @@ footer {
   background-color: crimson !important;
 }
 
-footer {
-  position: relative;
-  width: 100%;
-  bottom: 0;
+.cart_anchor {
+  float: right;
+  vertical-align: top;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
 }

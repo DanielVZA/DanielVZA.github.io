@@ -18,8 +18,8 @@
   <main id="content">
     <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fondo-banner" style="width: 100%;">
-    <a class="navbar-brand banger-25" href="#">COMIC STORE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <a class="navbar-brand banger-25" href="#" v-on:click="cargarIndex">COMIC STORE</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -30,107 +30,68 @@
         <li class="nav-item">
           <a class="nav-link text-white links" id="superheroes" href="#" v-on:click="cargarSuperHero">SUPER HEROES</a>
         </li>
-        <li>
-        </li>
       </ul>
-      <form class="form-inline">
+      <div class="form-inline">
         <input class="form-control mr-sm-2" v-model="nombre" type="search" placeholder="Buscar Heroe" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" v-on:click="buscarNombre(nombre)"
-          data-target="#modal-query" data-toggle="modal">Buscar</button>
-      </form>
+        <button class="btn btn-outline-light my-2 my-sm-0" v-on:click="buscarNombre(nombre)" data-target="#modal-query"
+          data-toggle="modal">Buscar</button>
+      </div>
+      </div>
     </div>
+    <div class="nav-item">
+      <a href="#" class="nav-link links banger" v-on:click="cargarCart">
+        <i class="fas fa-shopping-cart">
+          <span class="badge">{{ cart.length }}</span>
+        </i>
+      </a>
   </nav>
   </header>
 
-  <!-- Vista index -->
+  <!-- Vista Index -->
     <div id="index">
       <div class="container-fluid">
-        <div class="card-deck comic-card">
-          <div class="card p-3">
-            <img src="img/avenger1.png" width="Responsive image">
+        <div class="row m-2">
+          <div class="card mx-auto comic-card m-2 p-2 col-12 col-sm-5 col-md-5 col-lg-3 col-xl-3" v-for="(comic,index) in comics" v-if="comic.id < 5">
+            <img :src="comic.imagen" class="rounded img-fluid" width="Responsive image">
             <div class="card-body text-center" style="font-family: Bangers">
-              <h3>AVENGERS 1</h3>
-              <p class="text-danger">$12000</p>
-              <button class="btn-primary">COMPRAR</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/avengereradeultron.png" width="Responsive image">
-            <div class="card-body text-center" style="font-family: Bangers">
-              <h3>ERA DE ULTRON</h3>
-              <p class="text-danger">$13000</p>
-              <button class="btn-primary">COMPRAR</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/dead pool matandoparavivir.png" width="Responsive image">
-            <div class="card-body text-center" style="font-family: Bangers">
-              <h3>DEADPOOL</h3>
-              <p class="text-danger">$12000</p>
-              <button class="btn-danger">AGOTADO</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/secretwar.png">
-            <div class="card-body text-center" style="font-family: Bangers" width="Responsive image">
-              <h3>SECRET WAR</h3>
-              <p class="text-danger">$12000</p>
-              <button class="btn-primary">COMPRAR</button>
+              <h3>{{ comic.titulo }}</h3>
+              <p class="text-danger">${{ comic.precio }}</p>
+              <button class="btn-primary" v-if="comic.stock > 0" v-on:click="addProducto(comic,index)">
+                añadir al carro
+                <i class="fas fa-cart-plus"></i>
+              </button>
+              <button class="btn-danger" v-if="comic.stock < 1" disabled>agotado</button>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row p-4" style="background-color: #000;margin: auto">
-        <div class="col col-xl-12 col-12 text-center" style="color: #F5E83D;font-family: Bangers">
-          <h1>PRONTO</h1>
-          <h3>EL COMIC DE KICKASS</h3>
+        <div class="row p-4 mt-3 mb-3" style="background-color: #000;">
+          <div class="col col-xl-12 col-12 text-center" style="color: #F5E83D;font-family: Bangers">
+            <h1>PRONTO</h1>
+            <h3>EL COMIC DE KICKASS</h3>
+          </div>
+          <div class="col col-xl-12 col-12 text-center">
+            <img src="img/kickass.jpg" class="img-fluid" alt="Responsive image">
+          </div>
         </div>
-        <div class="col col-xl-12 col-12 text-center">
-          <img src="img/kickass.jpg" class="img-fluid" alt="Responsive image">
-        </div>
-      </div>
-
-      <div class="container-fluid">
-        <div class="card-deck comic-card">
-          <div class="card p-3">
-            <img src="img/spiderman1.png">
+        <div class="row m-2">
+          <div class="card mx-auto m-2 p-2 col-12 col-sm-5 col-md-5 col-lg-3 col-xl-3" v-for="comic in comics" v-if="comic.id > 4">
+            <img :src="comic.imagen" class="rounded img-fluid" width="Responsive image">
             <div class="card-body text-center" style="font-family: Bangers">
-              <h3>SPIDERMAN BACK</h3>
-              <p class="text-danger">$12000</p>
-              <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/stranger things.png">
-            <div class="card-body text-center" style="font-family: Bangers">
-              <h3>STRANGER THINGS</h3>
-              <p class="text-danger">$13000</p>
-              <button class="btn btn-sm btn-danger"><i class="fas fa-plus"></i> AGOTADO</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/thanosvence1.png">
-            <div class="card-body text-center" style="font-family: Bangers">
-              <h3>THANOS VENCE</h3><br>
-              <p class="text-danger">$12000</p>
-              <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
-            </div>
-          </div>
-          <div class="card p-3">
-            <img src="img/infinitygauntlet.png">
-            <div class="card-body text-center" style="font-family: Bangers">
-              <h3>INFINITY GAUNTLET</h3>
-              <p class="text-danger">$12000</p>
-              <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> COMPRAR</button>
+              <h3>{{ comic.titulo }}</h3>
+              <p class="text-danger">${{ comic.precio }}</p>
+              <button class="btn-primary" v-if="comic.stock > 0" v-on:click="addProducto(comic,index)">
+                añadir al carro
+                <i class="fas fa-cart-plus"></i>
+              </button>
+              <button class="btn-danger" v-if="comic.stock < 1" disabled>agotado</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- /Vista index -->
+    <!-- /Vista Index -->
 
-    <!-- Vista heroes -->
+    <!-- Vista Heroes -->
     <div id="superhero" class="container-fluid" style="display: none;">
       <div class="card-deck">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="heroe in heroes">
@@ -169,7 +130,29 @@
         </div>
       </div>
     </div>
-    <!-- /Vista heroes-->
+    <!-- /Vista Heroes -->
+
+    <!-- Vista Carrito -->
+    <div class="container-fluid" id="cart" style="display: none;">
+      <div class="card m-3">
+        <div class="card-header bg-info fondo-banner">
+          <h3 class="banger">Productos en el carro</h3>
+        </div>
+        <div class="card-content">
+          <div v-for="item in cart">
+            {{ item.titulo }}
+            <br>
+            {{ item.cantidad }}
+            <br>
+            {{ item.subTotal }}
+          </div>
+        </div>
+        <div class="card-footer fondo-banner bg-info">
+          <h3 class="banger">Total a pagar: ${{ compra.total }}</h3>
+        </div>
+      </div>
+    </div>
+    <!-- /Vista Carrito -->
 
     <!-- Modal -->
     <div class="modal fade" id="modal-hero" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">

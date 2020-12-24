@@ -11,6 +11,69 @@ var main = new Vue({
       603,629,662,682,694,698,715,721,725
     ],
     query: [],
+    cart: [],
+    compra: {
+      total: 0,
+
+    },
+    comics: [
+      {
+        id: 1,
+        titulo: 'Avengers 1',
+        imagen: 'img/avenger1.png',
+        precio: 12000,
+        stock: 5
+      },
+      {
+        id: 2,
+        titulo:'Era de Ultron',
+        imagen: 'img/avengereradeultron.png',
+        precio: 13000,
+        stock: 10
+      },
+      {
+        id: 3,
+        titulo: 'Deadpool',
+        imagen: 'img/dead pool matandoparavivir.png',
+        precio: 12000,
+        stock: 0
+      },
+      {
+        id: 4,
+        titulo: 'Secret War',
+        imagen: 'img/secretwar.png',
+        precio: 12000,
+        stock: 7
+      },
+      {
+        id: 5,
+        titulo: 'Spiderman Back',
+        imagen: 'img/spiderman1.png',
+        precio: 12000,
+        stock: 11
+      },
+      {
+        id: 6,
+        titulo: 'Stranger Things',
+        imagen: 'img/stranger things.png',
+        precio: 13000,
+        stock: 3
+      },
+      {
+        id: 7,
+        titulo: 'Thanos Vence',
+        imagen: 'img/thanosvence1.png',
+        precio: 12000,
+        stock: 13
+      },
+      {
+        id: 8,
+        titulo: 'Infinity Gauntlet',
+        imagen: 'img/infinitygauntlet.png',
+        precio: 12000,
+        stock: 9
+      }
+    ],
     result:[],
     nombre: '',
     datos_heroe: {
@@ -43,6 +106,35 @@ var main = new Vue({
         this.result = heroe.results;
       }); 
     },
+    addProducto: function(comic,index){
+      let item = {
+        index: index,
+        titulo: comic.titulo,
+        imagen: comic.imagen,
+        cantidad: 0,
+        subTotal: 0,
+      }
+      if(this.cart.find((e) => {
+          if(e.index == index){
+            e.cantidad += 1;
+            e.subTotal = e.cantidad * comic.precio;
+            this.compra.total += comic.precio;
+            this.comics[index].stock -= 1
+            return true;
+          }
+        })
+      ){}
+      else{
+        item.cantidad = 1;
+        item.subTotal = item.cantidad * comic.precio;
+        this.compra.total += comic.precio;
+        this.comics[index].stock -= 1;
+        this.cart.push(item);
+      }
+    },
+    removeProducto: function(index){
+      
+    },
     test: function(){
       alert('ok');
     },
@@ -50,11 +142,23 @@ var main = new Vue({
       let index = document.getElementById('index');
       index.style.display = 'block';
       let superHero = document.getElementById('superhero');
-      superHero.style.display = 'none'; 
+      superHero.style.display = 'none';
+      let cart = document.getElementById('cart');
+      cart.style.display = 'none';
     },
     cargarSuperHero: function(){
       let superHero = document.getElementById('superhero');
       superHero.style.display = 'block';
+      let index = document.getElementById('index');
+      index.style.display = 'none';
+      let cart = document.getElementById('cart');
+      cart.style.display = 'none';
+    },
+    cargarCart: function(){
+      let cart = document.getElementById('cart');
+      cart.style.display = 'block'
+      let superHero = document.getElementById('superhero');
+      superHero.style.display = 'none';
       let index = document.getElementById('index');
       index.style.display = 'none'; 
     },
