@@ -11,6 +11,7 @@ var main = new Vue({
       603,629,662,682,694,698,715,721,725
     ],
     query: [],
+    message: '',
     cart: [],
     compra: {
       total: 0,
@@ -101,10 +102,16 @@ var main = new Vue({
     buscarNombre: async function(nombre){
       let cont = 0;
       var resultado = await axios.get(this.urlSearch+nombre);
-      this.query.push(resultado.data);
-      this.query.forEach(heroe => {
-        this.result = heroe.results;
-      }); 
+      if(resultado.data.response == 'success'){ 
+        this.message = 'Resultados de la busqueda '
+        this.query.push(resultado.data);
+        this.query.forEach(heroe => {
+          this.result = heroe.results;
+        });
+      }else{
+        this.nombre = ' ';
+        this.message = 'No se han encontrado coincidencias  para '
+      } 
     },
     addProducto: function(comic,index){
       let item = {

@@ -205,14 +205,14 @@
         <div class="modal-content bg-info banger">
 
           <div class="modal-header fondo-banner">
-            <h5 class="modal-title h4" id="modalXlLabel">Resultados busqueda "{{ nombre }}"</h5>
+            <h5 class="modal-title h4" id="modalXlLabel">{{ message }} "{{ nombre }}"</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body fondo-brushed">
             <div class="card-deck">
-              <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="heroe in result">
+              <div class="col-12 col-sm-6 col-md-6 col-lg-3" v-for="heroe in result">
                 <div class="card p-3 m-3 fondo-banner bg-info hero-card">
                   <div class="card-title">
                     <h3 class="text-center banger-25">{{ heroe.name }}</h3>
