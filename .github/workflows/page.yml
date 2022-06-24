@@ -10,4 +10,4 @@ jobs:
       with:
         fetch-depth: 0
     - name: pipeline de Prueba
-    - run: echo "Hola Mundo"
+      run: echo "Hola Mundo"
