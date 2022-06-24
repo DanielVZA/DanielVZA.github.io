@@ -6,4 +6,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - run: git pull origin main
+      - name: Test command
+        run: pwd
+      - name: Update page
+        run: git pull origin main
