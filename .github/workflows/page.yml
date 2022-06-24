@@ -6,4 +6,4 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - run: echo "Update page on server"
+      - run: git pull origin main
