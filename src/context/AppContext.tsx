@@ -1,0 +1,106 @@
+import {createContext, Dispatch, SetStateAction, useMemo, useState, ReactNode} from "react";
+import CartItem from "@/app/models/CartItem";
+import Comic from "@/app/models/Comic";
+import {toast, ToastContainer} from "react-toastify";
+import {BadgeCheck, CircleAlert, Info, TriangleAlert} from "lucide-react";
+
+type AppContextType = {
+    cleanUp: () => void;
+    addProduct: (comic: Comic) => void;
+    notificationInfo: (message: string) => void;
+    notificationAlert: (message: string) => void;
+    notificationSuccess: (message: string) => void;
+    notificationWarn: (message: string) => void;
+    cart: CartItem[];
+    setCart: Dispatch<SetStateAction<CartItem[]>>;
+    buy: number;
+    setBuy: Dispatch<SetStateAction<number>>;
+    comics: Comic[];
+    setComics: Dispatch<SetStateAction<Comic[]>>; // Fixed type to Comic[]
+};
+
+type AppProviderProps = {
+    children: ReactNode; // Updated type for children
+};
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+const AppProvider = ({children}: AppProviderProps) => {
+    const [cart, setCart] = useState<CartItem[]>([]);
+    const [buy, setBuy] = useState<number>(0);
+    const [comics, setComics] = useState<Comic[]>([]);
+
+    const cleanUp = () => {
+        setCart([]);
+        setBuy(0);
+        setComics([]);
+    };
+
+    const addProduct = (comic: Comic) => {
+        setCart((prevCart) => {
+            const existingItem = prevCart.find((item) => item.comicId === comic.id);
+            if (existingItem) {
+                return prevCart.map((item) =>
+                    item.comicId === comic.id
+                        ? {
+                            ...item,
+                            quantity: item.quantity + 1,
+                            subTotal: (item.quantity + 1) * comic.price,
+                        }
+                        : item
+                );
+            } else {
+                const newCartItem = new CartItem(1, comic);
+                return [...prevCart, newCartItem];
+            }
+        });
+
+        setBuy((prevCompra) => prevCompra + comic.price);
+        notificationSuccess(`Comic "${comic.title}" added to cart`);
+
+        setComics((prevComics) =>
+            prevComics.map((com) =>
+                com.id === comic.id && com.stock > 0
+                    ? {...com, stock: com.stock - 1}
+                    : com
+            )
+        );
+    };
+    const notificationInfo = (message: string) => {
+        toast.info(message, {autoClose: 2000});
+        return <Info className="stroke-indigo-400"/>;
+    };
+    const notificationAlert = (message: string) => {
+        toast.error(message, {autoClose: 2000});
+        return <CircleAlert className="stroke-red-500"/>;
+    };
+    const notificationSuccess = (message: string) => {
+        toast.success(message, {autoClose: 2000});
+        return <BadgeCheck className="stroke-green-500"/>
+    };
+    const notificationWarn = (message: string) => {
+        toast.warning(message, {autoClose: 2000});
+        return <TriangleAlert className="stroke-yellow-500"/>;
+    };
+
+    const values = useMemo(
+        () => ({
+            cleanUp, addProduct,
+            notificationInfo, notificationAlert,
+            notificationSuccess, notificationWarn,
+            cart, setCart,
+            buy, setBuy,
+            comics, setComics
+        }),
+        [cart, buy, comics] // Added dependencies for useMemo
+    );
+
+    return (
+        <AppContext.Provider value={values}>
+            <ToastContainer/>
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export {AppProvider as default, AppContext};
