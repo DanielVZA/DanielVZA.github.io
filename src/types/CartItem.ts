@@ -1,4 +1,4 @@
-import Comic from "@/app/models/Comic";
+import Comic from "@/types/Comic";
 
 class CartItem {
     quantity: number;

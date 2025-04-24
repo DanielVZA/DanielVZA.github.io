@@ -1,10 +1,11 @@
 'use client'
 import React, {useContext, useEffect} from 'react';
 import {getAllComics} from "@/services/getComics";
-import Comic from "@/app/models/Comic";
+import Comic from "@/types/Comic";
 import {AppContext} from "@/context/AppContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
+import {getAllSuperHeroes} from "@/services/getSuperHeroes";
 
 type ComicBookProps = {
     maxId?: number
@@ -19,6 +20,7 @@ const ComicBook = ({maxId, minId}: ComicBookProps) => {
             const data: Comic[] = await getAllComics();
             if (setComics) setComics(data);
         };
+        getAllSuperHeroes();
         fetchComics();
 
         return () => console.log('fetchComics');

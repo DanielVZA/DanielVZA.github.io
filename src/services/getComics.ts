@@ -1,4 +1,4 @@
-import Comic from "@/app/models/Comic";
+import Comic from "@/types/Comic";
 
 const COMICS: Comic[] = [
     new Comic(1, 'Avengers 1', '/images/avenger1.png', 12000, 5),

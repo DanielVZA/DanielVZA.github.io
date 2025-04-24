@@ -8,7 +8,7 @@ const SuperheroSearch = () => {
   const [message, setMessage] = useState('');
 
   const buscarNombre = async (nombre) => {
-    const resultado = await axios.get(`https://superheroapi.com/api.php/630240554391029/search/${nombre}`);
+    const resultado = await axios.get(`.php/630240554391029/search/${nombre}`);
     if (resultado.data.response === 'success') {
       setMessage('Resultados de la búsqueda');
       setResult(resultado.data.results);

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
-import ComicBook from './components/ComicBook';
-import SuperheroSearch from './components/SuperheroSearch';
+import ComicBook from '@/components/ComicBook';
+import SuperheroSearch from '@/components/SuperheroSearch';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import AppProvider from "@/context/AppContext";
@@ -36,7 +36,7 @@ export default function Home() {
                                 </li>
                             </ul>
                             <div className="form-inline">
-                                <input className="form-control mr-sm-2" v-model="nombre" type="search"
+                                <input className="form-control mr-sm-2" type="search"
                                        placeholder="Buscar Heroe" aria-label="Search"/>
                                 <button className="btn btn-outline-light my-2 my-sm-0"
                                         onClick={() => console.log("buscarNombre(nombre)")}
@@ -66,7 +66,7 @@ export default function Home() {
                                     <h3>EL COMIC DE KICKASS</h3>
                                 </div>
                                 <div className="col col-xl-12 col-12 text-center">
-                                    <img src="images/kickass.jpg" className="img-fluid"/>
+                                    <img src="images/kickass.jpg" className="img-fluid" alt="KickAss Banner"/>
                                 </div>
                             </div>
                             <div className="row m-2">

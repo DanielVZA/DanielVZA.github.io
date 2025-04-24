@@ -1,7 +1,7 @@
 import {createContext, Dispatch, SetStateAction, useMemo, useState, ReactNode} from "react";
-import CartItem from "@/app/models/CartItem";
-import Comic from "@/app/models/Comic";
-import {toast, ToastContainer} from "react-toastify";
+import CartItem from "@/types/CartItem";
+import Comic from "@/types/Comic";
+import {toast, ToastContainer, Slide} from "react-toastify";
 import {BadgeCheck, CircleAlert, Info, TriangleAlert} from "lucide-react";
 
 type AppContextType = {
@@ -97,7 +97,7 @@ const AppProvider = ({children}: AppProviderProps) => {
 
     return (
         <AppContext.Provider value={values}>
-            <ToastContainer/>
+            <ToastContainer autoClose={2000} transition={Slide}/>
             {children}
         </AppContext.Provider>
     );

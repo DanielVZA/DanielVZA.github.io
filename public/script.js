@@ -4,25 +4,12 @@ import axios from 'axios';
 const App = () => {
   const [heroes, setHeroes] = useState([]);
   const [badImg] = useState([
-    51, 54, 74, 101, 113, 117, 124, 131, 133, 134,
-    143, 164, 184, 205, 244, 283, 288, 290, 291,
-    292, 362, 447, 453, 511, 512, 552, 553, 593,
-    603, 629, 662, 682, 694, 698, 715, 721, 725
+
   ]);
   const [query, setQuery] = useState([]);
   const [message, setMessage] = useState('');
   const [cart, setCart] = useState([]);
   const [compra, setCompra] = useState({ total: 0 });
-  const [comics, setComics] = useState([
-    { id: 1, titulo: 'Avengers 1', imagen: 'img/avenger1.png', precio: 12000, stock: 5 },
-    { id: 2, titulo: 'Era de Ultron', imagen: 'img/avengereradeultron.png', precio: 13000, stock: 7 },
-    { id: 3, titulo: 'Deadpool', imagen: 'img/dead pool matandoparavivir.png', precio: 12000, stock: 2 },
-    { id: 4, titulo: 'Secret War', imagen: 'img/secretwar.png', precio: 12000, stock: 7 },
-    { id: 5, titulo: 'Spiderman Back', imagen: 'img/spiderman1.png', precio: 12000, stock: 1 },
-    { id: 6, titulo: 'Stranger Things', imagen: 'img/stranger things.png', precio: 13000, stock: 3 },
-    { id: 7, titulo: 'Thanos Vence', imagen: 'img/thanosvence1.png', precio: 12000, stock: 4 },
-    { id: 8, titulo: 'Infinity Gauntlet', imagen: 'img/infinitygauntlet.png', precio: 12000, stock: 3 }
-  ]);
   const [result, setResult] = useState([]);
   const [nombre, setNombre] = useState('');
   const [datosHeroe, setDatosHeroe] = useState({
