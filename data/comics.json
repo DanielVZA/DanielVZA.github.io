@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Avengers 1",
+    "image": ",/images/avenger1.png",
+    "price": 12000,
+    "stock": 5
+  },
+  {
+    "id": 2,
+    "title": "Era de Ultron",
+    "image": ",/images/avengereradeultron.png",
+    "price": 13000,
+    "stock": 7
+  },
+  {
+    "id": 3,
+    "title": "Deadpool",
+    "image": ",/images/dead_pool_matandoparavivir.png",
+    "price": 12000,
+    "stock": 2
+  },
+  {
+    "id": 4,
+    "title": "Secret War",
+    "image": ",/images/secretwar.png",
+    "price": 12000,
+    "stock": 7
+  },
+  {
+    "id": 5,
+    "title": "Spiderman Back",
+    "image": ",/images/spiderman1.png",
+    "price": 12000,
+    "stock": 1
+  },
+  {
+    "id": 6,
+    "title": "Stranger Things",
+    "image": ",/images/stranger_things.png",
+    "price": 13000,
+    "stock": 3
+  },
+  {
+    "id": 7,
+    "title": "Thanos Vence",
+    "image": ",/images/thanosvence1.png",
+    "price": 12000,
+    "stock": 4
+  },
+  {
+    "id": 8,
+    "title": "Infinity Gauntlet",
+    "image": ",/images/infinitygauntlet.png",
+    "price": 12000,
+    "stock": 3
+  }
+]
