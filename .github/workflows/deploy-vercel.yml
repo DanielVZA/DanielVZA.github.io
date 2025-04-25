@@ -25,5 +25,7 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          npm install -g vercel
-          vercel deploy --prod --token=$VERCEL_TOKEN --confirm --yes
+          npm install -g vercel &&
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          vercel build --token=$VERCEL_TOKEN
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
