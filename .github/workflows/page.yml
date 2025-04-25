@@ -1,7 +1,8 @@
 name: Runner self-hosted test
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - gh-pages
 jobs:
   build:
     runs-on: self-hosted
