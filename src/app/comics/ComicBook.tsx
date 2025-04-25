@@ -7,11 +7,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 
 type ComicBookProps = {
-    maxId?: number
-    minId?: number
+    maxId?: any
+    minId?: any
 }
 
-const ComicBook = ({maxId, minId}: ComicBookProps) => {
+const ComicBook = ({maxId = null, minId = null}: ComicBookProps) => {
     const context = useContext(AppContext);
     if (!context) {
         console.error("AppContext is undefined. Ensure the component is wrapped with AppProvider.");
