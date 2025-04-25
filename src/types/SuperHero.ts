@@ -1,40 +1,22 @@
-class SuperHero {
+export interface SuperHero {
     id: number;
     name: string;
+    slug: string;
     powerStats: PowerStats;
-    biography: Biography;
     appearance: Appearance;
+    biography: Biography;
     work: Work;
-    image: string;
+    images: Image;
 
-    constructor(id: number, name: string, powerStats: PowerStats, biography: Biography, appearance: Appearance, work: Work, image: string) {
-        this.id = id;
-        this.name = name;
-        this.powerStats = powerStats;
-        this.biography = biography;
-        this.appearance = appearance;
-        this.work = work;
-        this.image = image;
-    }
 }
 
 interface PowerStats {
-    intelligence: string;
-    strength: string;
-    speed: string;
-    durability: string;
-    power: string;
-    combat: string;
-}
-
-interface Biography {
-    fullName: string;
-    alterEgos: string;
-    aliases: string[];
-    placeOfBirth: string;
-    firstAppearance: string;
-    publisher: string;
-    alignment: string;
+    intelligence: number;
+    strength: number;
+    speed: number;
+    durability: number;
+    power: number;
+    combat: number;
 }
 
 interface Appearance {
@@ -46,6 +28,15 @@ interface Appearance {
     hairColor: string;
 }
 
+interface Biography {
+    fullName: string;
+    alterEgos: string;
+    aliases: string[];
+    placeOfBirth: string;
+    firstAppearance: string;
+    publisher: string;
+    alignment: string;
+}
 interface Work {
     occupation: string;
     base: string;
@@ -54,4 +45,11 @@ interface Work {
 interface Connection {
     groupAffiliation: string;
     relatives: string;
+}
+
+interface Image {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
 }

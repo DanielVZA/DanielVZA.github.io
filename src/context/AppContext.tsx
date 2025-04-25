@@ -1,12 +1,14 @@
-import {createContext, Dispatch, SetStateAction, useMemo, useState, ReactNode} from "react";
+"use client";
+
+import React, {createContext, Dispatch, SetStateAction, useMemo, useState, ReactNode} from "react";
 import CartItem from "@/types/CartItem";
-import Comic from "@/types/Comic";
+import {Comic} from "@/types/Comic";
 import {toast, ToastContainer, Slide} from "react-toastify";
 import {BadgeCheck, CircleAlert, Info, TriangleAlert} from "lucide-react";
 
 type AppContextType = {
     cleanUp: () => void;
-    addProduct: (comic: Comic) => void;
+    addProduct: (comic: Comic, setComics: Dispatch<SetStateAction<Comic[]>>) => void;
     notificationInfo: (message: string) => void;
     notificationAlert: (message: string) => void;
     notificationSuccess: (message: string) => void;
@@ -14,9 +16,7 @@ type AppContextType = {
     cart: CartItem[];
     setCart: Dispatch<SetStateAction<CartItem[]>>;
     buy: number;
-    setBuy: Dispatch<SetStateAction<number>>;
-    comics: Comic[];
-    setComics: Dispatch<SetStateAction<Comic[]>>; // Fixed type to Comic[]
+    setBuy: Dispatch<SetStateAction<number>>; // Fixed type to Comic[]
 };
 
 type AppProviderProps = {
@@ -28,15 +28,13 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const AppProvider = ({children}: AppProviderProps) => {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [buy, setBuy] = useState<number>(0);
-    const [comics, setComics] = useState<Comic[]>([]);
 
     const cleanUp = () => {
         setCart([]);
         setBuy(0);
-        setComics([]);
     };
 
-    const addProduct = (comic: Comic) => {
+    const addProduct = (comic: Comic, setComics: Dispatch<SetStateAction<Comic[]>>) => {
         setCart((prevCart) => {
             const existingItem = prevCart.find((item) => item.comicId === comic.id);
             if (existingItem) {
@@ -89,10 +87,9 @@ const AppProvider = ({children}: AppProviderProps) => {
             notificationInfo, notificationAlert,
             notificationSuccess, notificationWarn,
             cart, setCart,
-            buy, setBuy,
-            comics, setComics
+            buy, setBuy
         }),
-        [cart, buy, comics] // Added dependencies for useMemo
+        [cart, buy] // Added dependencies for useMemo
     );
 
     return (
