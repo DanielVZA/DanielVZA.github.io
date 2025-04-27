@@ -5,17 +5,18 @@ import React, {useContext} from "react";
 import {AppContext} from "@/context/AppContext";
 
 const CartIcon = () => {
-    const context = useContext(AppContext);
+    const {cart, setIsOpen, isOpen} = useContext(AppContext) ?? {
+        cart: [], setIsOpen: () => {
+        }
+    };
 
-    if (!context) {
-        console.error("AppContext is undefined. Ensure the component is wrapped with AppProvider.");
-        return null;
+    const open = () => {
+        setIsOpen(!isOpen);
+        console.log("Works!");
     }
 
-    const {cart} = context;
-
     return (
-        <button className="nav-link links banger text-light" onClick={() => console.log("cargarCart")}>
+        <button className="nav-link links text-light" type="button" onClick={open}>
             <FontAwesomeIcon icon={faShoppingCart}/>
             <span className="badge">{cart.length}</span>
         </button>

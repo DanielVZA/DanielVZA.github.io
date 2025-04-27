@@ -1,4 +1,5 @@
 export interface SuperHero {
+    _id: number;
     id: number;
     name: string;
     slug: string;
@@ -6,11 +7,12 @@ export interface SuperHero {
     appearance: Appearance;
     biography: Biography;
     work: Work;
+    connections: Connection;
     images: Image;
 
 }
 
-interface PowerStats {
+export interface PowerStats {
     intelligence: number;
     strength: number;
     speed: number;
@@ -19,7 +21,7 @@ interface PowerStats {
     combat: number;
 }
 
-interface Appearance {
+export interface Appearance {
     gender: string;
     race: string;
     height: string[];
@@ -28,7 +30,7 @@ interface Appearance {
     hairColor: string;
 }
 
-interface Biography {
+export interface Biography {
     fullName: string;
     alterEgos: string;
     aliases: string[];
@@ -37,17 +39,17 @@ interface Biography {
     publisher: string;
     alignment: string;
 }
-interface Work {
+export interface Work {
     occupation: string;
     base: string;
 }
 
-interface Connection {
+export interface Connection {
     groupAffiliation: string;
     relatives: string;
 }
 
-interface Image {
+export interface Image {
     xs: string;
     sm: string;
     md: string;

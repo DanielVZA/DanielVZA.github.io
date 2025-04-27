@@ -16,7 +16,9 @@ type AppContextType = {
     cart: CartItem[];
     setCart: Dispatch<SetStateAction<CartItem[]>>;
     buy: number;
-    setBuy: Dispatch<SetStateAction<number>>; // Fixed type to Comic[]
+    setBuy: Dispatch<SetStateAction<number>>;
+    isOpen:boolean;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 type AppProviderProps = {
@@ -28,10 +30,12 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const AppProvider = ({children}: AppProviderProps) => {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [buy, setBuy] = useState<number>(0);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const cleanUp = () => {
         setCart([]);
         setBuy(0);
+        setIsOpen(false);
     };
 
     const addProduct = (comic: Comic, setComics: Dispatch<SetStateAction<Comic[]>>) => {
@@ -48,7 +52,7 @@ const AppProvider = ({children}: AppProviderProps) => {
                         : item
                 );
             } else {
-                const newCartItem = new CartItem(1, comic);
+                const newCartItem = {quantity: 1, comic: comic, comicId: comic.id, subTotal: comic.price};
                 return [...prevCart, newCartItem];
             }
         });
@@ -87,7 +91,8 @@ const AppProvider = ({children}: AppProviderProps) => {
             notificationInfo, notificationAlert,
             notificationSuccess, notificationWarn,
             cart, setCart,
-            buy, setBuy
+            buy, setBuy,
+            isOpen, setIsOpen
         }),
         [cart, buy] // Added dependencies for useMemo
     );

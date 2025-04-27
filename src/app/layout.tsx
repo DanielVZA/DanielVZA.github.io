@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import AppProvider from "@/context/AppContext";
+import CartOffCanvas from "@/components/CartOffCanvas";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({children,}: Readonly<{
         <body className={`${geistSans.variable} ${geistMono.variable} fondo-brushed`}>
         <AppProvider>
             <NavBar/>
+            <CartOffCanvas/>
             {children}
             <Footer/>
         </AppProvider>

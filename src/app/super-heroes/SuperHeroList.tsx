@@ -55,7 +55,7 @@ const SuperHeroList = () => {
         <>
             {
                 heroes.map((hero) => (
-                        <div className="col" key={hero.id}>
+                        <div className="col" key={hero._id}>
                             <HeroCard hero={hero}/>
                         </div>
                     )
