@@ -21,8 +21,11 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGOUSER: ${{secrets.MONGOUSER}}
+          PASSWORD: ${{secrets.PASSWORD}}
+          DBNAME: ${{secrets.DBNAME}}
+          CLUSTER_APP_NAME: ${{secrets.CLUSTER_APP_NAME}}
+          CLUSTER_URI: ${{secrets.CLUSTER_URI}}
         run: |
           echo "Injecting environment variables to Vercel..."
           curl -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID/env" \
