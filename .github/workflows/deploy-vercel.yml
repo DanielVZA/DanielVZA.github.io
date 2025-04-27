@@ -17,6 +17,45 @@ jobs:
         with:
           node-version: 20
 
+      - name: Set Vercel Environment Variables
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: |
+          echo "Injecting environment variables to Vercel..."
+          curl -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID/env" \
+          -H "Authorization: Bearer $VERCEL_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '[
+            {
+              "key": "MONGOUSER",
+              "value": "'"$MONGOUSER"'",
+              "target": ["production"]
+            },
+            {
+              "key": "PASSWORD",
+              "value": "'"$PASSWORD"'",
+              "target": ["production"]
+            },
+            {
+              "key": "DBNAME",
+              "value": "'"$DBNAME"'",
+              "target": ["production"]
+            },
+            {
+              "key": "CLUSTER_APP_NAME",
+              "value": "'"$CLUSTER_APP_NAME"'",
+              "target": ["production"]
+            },
+            {
+              "key": "CLUSTER_URI",
+              "value": "'"$CLUSTER_URI"'",
+              "target": ["production"]
+            },
+          ]'
+
       - name: Install dependencies
         run: npm install
 
@@ -27,7 +66,7 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          npm install -g vercel &&
+          npm install -g vercel
           vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
           vercel build --prod --token=$VERCEL_TOKEN
           vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
