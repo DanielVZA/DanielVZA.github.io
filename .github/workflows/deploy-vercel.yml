@@ -34,7 +34,7 @@ jobs:
             echo "Processing $VAR..."
             
             # Buscar si ya existe la variable
-            EXISTING_ENV=$(curl -s -G "https://api.vercel.com/v10/projects/$PROJECT_ID/env?target=production&key=$VAR" \
+            EXISTING_ENV=$(curl -s -G "https://api.vercel.com/v9/projects/$PROJECT_ID/env?target=production&key=$VAR" \
               -H "Authorization: Bearer $VERCEL_TOKEN" \
               -H "Content-Type: application/json")
         
@@ -43,13 +43,13 @@ jobs:
             
             if [ ! -z "$EXISTING_ID" ]; then
               echo "Variable $VAR exists, deleting..."
-              curl -X DELETE "https://api.vercel.com/v10/projects/$PROJECT_ID/env/$EXISTING_ID" \
+              curl -X DELETE "https://api.vercel.com/v9/projects/$PROJECT_ID/env/$EXISTING_ID" \
                 -H "Authorization: Bearer $VERCEL_TOKEN"
             fi
             
             # Crear la nueva variable
             echo "Creating $VAR..."
-            curl -X POST "https://api.vercel.com/v10/projects/$PROJECT_ID/env" \
+            curl -X POST "https://api.vercel.com/v9/projects/$PROJECT_ID/env" \
               -H "Authorization: Bearer $VERCEL_TOKEN" \
               -H "Content-Type: application/json" \
               -d '{
