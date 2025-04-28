@@ -27,7 +27,7 @@ jobs:
           CLUSTER_APP_NAME: ${{secrets.CLUSTER_APP_NAME}}
           CLUSTER_URI: ${{secrets.CLUSTER_URI}}
         run: |
-          echo "Injecting environment variables to Vercel..."
+          echo "Injecting environment variables to project $PROJECT_ID Vercel..."
           curl -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID/env" \
           -H "Authorization: Bearer $VERCEL_TOKEN" \
           -H "Content-Type: application/json" \
