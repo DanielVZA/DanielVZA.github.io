@@ -27,37 +27,20 @@ jobs:
           CLUSTER_APP_NAME: ${{secrets.CLUSTER_APP_NAME}}
           CLUSTER_URI: ${{secrets.CLUSTER_URI}}
         run: |
-          echo "Injecting environment variables to project $PROJECT_ID Vercel..."
-          curl -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID/env" \
-          -H "Authorization: Bearer $VERCEL_TOKEN" \
-          -H "Content-Type: application/json" \
-          -d '[
-            {
-              "key": "MONGOUSER",
-              "value": "'"$MONGOUSER"'",
-              "target": ["production"]
-            },
-            {
-              "key": "PASSWORD",
-              "value": "'"$PASSWORD"'",
-              "target": ["production"]
-            },
-            {
-              "key": "DBNAME",
-              "value": "'"$DBNAME"'",
-              "target": ["production"]
-            },
-            {
-              "key": "CLUSTER_APP_NAME",
-              "value": "'"$CLUSTER_APP_NAME"'",
-              "target": ["production"]
-            },
-            {
-              "key": "CLUSTER_URI",
-              "value": "'"$CLUSTER_URI"'",
-              "target": ["production"]
-            },
-          ]'
+          echo "Injecting environment variables to project $PROJECT_ID on Vercel..."
+
+          for VAR in MONGOUSER PASSWORD DBNAME CLUSTER_APP_NAME CLUSTER_URI; do
+            VALUE=$(printenv $VAR)
+            echo "Setting $VAR..."
+            curl -X POST "https://api.vercel.com/v10/projects/$PROJECT_ID/env" \
+              -H "Authorization: Bearer $VERCEL_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "key": "'"$VAR"'",
+                "value": "'"$VALUE"'",
+                "target": ["production"]
+            }'
+          done
 
       - name: Install dependencies
         run: npm install
