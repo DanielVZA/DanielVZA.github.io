@@ -28,16 +28,34 @@ jobs:
           CLUSTER_URI: ${{secrets.CLUSTER_URI}}
         run: |
           echo "Injecting environment variables to project $PROJECT_ID on Vercel..."
-
+        
           for VAR in MONGOUSER PASSWORD DBNAME CLUSTER_APP_NAME CLUSTER_URI; do
             VALUE=$(printenv $VAR)
-            echo "Setting $VAR..."
+            echo "Processing $VAR..."
+            
+            # Buscar si ya existe la variable
+            EXISTING_ENV=$(curl -s -G "https://api.vercel.com/v10/projects/$PROJECT_ID/env?target=production&key=$VAR" \
+              -H "Authorization: Bearer $VERCEL_TOKEN" \
+              -H "Content-Type: application/json")
+        
+            # Si existe, la eliminamos
+            EXISTING_ID=$(echo $EXISTING_ENV | jq -r '.envs[0].id // empty')
+            
+            if [ ! -z "$EXISTING_ID" ]; then
+              echo "Variable $VAR exists, deleting..."
+              curl -X DELETE "https://api.vercel.com/v10/projects/$PROJECT_ID/env/$EXISTING_ID" \
+                -H "Authorization: Bearer $VERCEL_TOKEN"
+            fi
+            
+            # Crear la nueva variable
+            echo "Creating $VAR..."
             curl -X POST "https://api.vercel.com/v10/projects/$PROJECT_ID/env" \
               -H "Authorization: Bearer $VERCEL_TOKEN" \
               -H "Content-Type: application/json" \
               -d '{
                 "key": "'"$VAR"'",
                 "value": "'"$VALUE"'",
+                "type": "encrypted",
                 "target": ["production"]
             }'
           done
