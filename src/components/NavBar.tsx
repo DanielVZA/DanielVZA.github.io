@@ -1,6 +1,7 @@
 import React from "react";
 import CartIcon from "@/components/CartIcon";
 import Link from "next/link";
+import SearchHeroForm from "@/components/SearchHeroForm";
 
 const NavBar = () => {
     return (
@@ -25,11 +26,7 @@ const NavBar = () => {
                         <div className="nav-item align-items-end">
                             <CartIcon/>
                         </div>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search Hero"
-                                   aria-label="Search Hero"/>
-                            <button className="btn btn-outline-light" type="submit">Search</button>
-                        </form>
+                        <SearchHeroForm/>
                     </div>
                 </div>
             </nav>
